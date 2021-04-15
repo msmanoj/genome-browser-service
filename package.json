@@ -16,9 +16,6 @@
   "dependencies": {
     "ensembl-genome-browser": "https://raw.githubusercontent.com/Ensembl/ensembl-genome-browser-assets/master/assets-80f51620ed443c640cdfd6b5aebd505b.tar.gz"
   },
-  "files": [
-    "lib"
-  ],
   "keywords": [
     "Genome",
     "browser"

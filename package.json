@@ -1,0 +1,26 @@
+{
+  "name": "genome-browser-service",
+  "version": "1.0.0",
+  "description": "Ensembl standalone genome browser service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msmanoj/genome-browser-service.git"
+  },
+  "dependencies": {
+    "ensembl-genome-browser": "https://raw.githubusercontent.com/Ensembl/ensembl-genome-browser-assets/master/assets-80f51620ed443c640cdfd6b5aebd505b.tar.gz"
+  },
+  "keywords": [
+    "Genome",
+    "browser"
+  ],
+  "author": "Manoj Pandian Sakthivel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msmanoj/genome-browser-service/issues"
+  },
+  "homepage": "https://github.com/msmanoj/genome-browser-service#readme"
+}

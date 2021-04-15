@@ -166,6 +166,7 @@ export type ZoomOutAction = {
 };
 
 export type Action =
+  | ActivateBrowserAction
   | GenomeBrowserReadyAction
   | BrowserLocationUpdateAction
   | UpdateCogPositionAction

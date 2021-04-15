@@ -12,7 +12,10 @@
     "url": "git+https://github.com/msmanoj/genome-browser-service.git"
   },
   "dependencies": {
-    "ensembl-genome-browser": "https://raw.githubusercontent.com/Ensembl/ensembl-genome-browser-assets/master/assets-80f51620ed443c640cdfd6b5aebd505b.tar.gz"
+    "ensembl-genome-browser": "https://raw.githubusercontent.com/Ensembl/ensembl-genome-browser-assets/master/assets-80f51620ed443c640cdfd6b5aebd505b.tar.gz",
+    "browserify": "latest",
+    "@types/browserify": "latest",
+    "typescript": "next"
   },
   "keywords": [
     "Genome",

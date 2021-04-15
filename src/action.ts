@@ -159,16 +159,14 @@ export type ZoomByAction = {
   payload: { zoom_by: number };
 };
 
-export type IncomingActions =
+export type Actions =
   | GenomeBrowserReadyAction
   | BrowserLocationUpdateAction
   | UpdateCogPositionAction
   | UpdateCogTrackPositionAction
   | ZmenuCreateAction
   | ZmenuDestroyAction
-  | ZmenuRepositionAction;
-
-export type OutgoingActions =
+  | ZmenuRepositionAction
   | BrowserToggleTracksAction
   | ZmenuEnterAction
   | ZmenuLeaveAction
@@ -180,8 +178,6 @@ export type OutgoingActions =
   | MoveLeftAction
   | MoveRightAction
   | ZoomByAction;
-
-export type Actions = IncomingActions | OutgoingActions;
 
 export const createAction = (action: Actions) => {
   return { ...action };

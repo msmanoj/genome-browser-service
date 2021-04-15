@@ -1,4 +1,4 @@
-import { Actions, ActionType, IncomingActions as IncomingMessage } from './action';
+import { Action, ActionType } from './action';
 
 const subscriptions = new Map<string, Set<Function>>();
 
@@ -13,7 +13,7 @@ export enum BrowserMessagingType {
 
 type IncomingMessageEventData = {
   type: BrowserMessagingType.BPANE_OUT;
-} & IncomingMessage;
+} & Action;
 
 class GenomeBrowserService {
 
@@ -52,7 +52,7 @@ class GenomeBrowserService {
     subscriptionsToAction?.forEach(fn => fn(payload));
   }
   
-  public send = (action: Actions) => {
+  public send = (action: Action) => {
     if (!this.element) {
       return;
     }

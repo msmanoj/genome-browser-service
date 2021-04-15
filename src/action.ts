@@ -27,7 +27,8 @@ export enum ActionType {
   ZMENU_ENTER = "zmenu-enter",
   ZMENU_LEAVE = "zmenu-leave",
   ZMENU_REPOSITION = "update_zmenu_position",
-  ZOOM_BY = "zoom_by",
+  ZOOM_IN = "zoom_by",
+  ZOOM_OUT = "zoom_by"
 }
 
 export type GenomeBrowserReadyAction = {
@@ -154,8 +155,13 @@ export type MoveRightAction = {
   payload: { move_right_px: number };
 };
 
-export type ZoomByAction = {
-  type: ActionType.ZOOM_BY;
+export type ZoomInAction = {
+  type: ActionType.ZOOM_IN;
+  payload: { zoom_by: number };
+};
+
+export type ZoomOutAction = {
+  type: ActionType.ZOOM_OUT;
   payload: { zoom_by: number };
 };
 
@@ -177,7 +183,8 @@ export type Action =
   | MoveDownAction
   | MoveLeftAction
   | MoveRightAction
-  | ZoomByAction;
+  | ZoomInAction
+  | ZoomOutAction;
 
 export const createAction = (action: Action) => {
   return { ...action };

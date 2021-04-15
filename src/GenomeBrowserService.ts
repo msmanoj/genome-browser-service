@@ -17,8 +17,8 @@ type IncomingMessageEventData = {
 
 class GenomeBrowserService {
 
-  element: HTMLElement | null= null;
-  elementId: string = '';
+  private element: HTMLElement | null= null;
+  private elementId: string = '';
 
    constructor (elementId: string) {
     this.elementId = elementId;

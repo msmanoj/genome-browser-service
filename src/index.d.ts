@@ -1,7 +1,8 @@
-import { Action, ActionType } from './action';
-
+import { OutgoingAction, OutgoingActionType, IncomingAction, IncomingActionType } from './action';
 
 export {
-    Action,
-    ActionType
+    OutgoingAction, 
+    OutgoingActionType, 
+    IncomingAction, 
+    IncomingActionType
 }

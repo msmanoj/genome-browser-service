@@ -7,10 +7,9 @@ import {
   ZmenuContentFeature,
 } from "./types";
 
-export enum ActionType {
+export enum OutgoingActionType {
   PING = "ping",
   ACTIVATE_BROWSER = "activate_browser",
-  GENOME_BROWSER_READY = "genome_browser_ready",
   MOVE_DOWN = "move_down",
   MOVE_LEFT = "move_left",
   MOVE_RIGHT = "move_right",
@@ -18,26 +17,31 @@ export enum ActionType {
   SET_FOCUS = "set_focus",
   SET_FOCUS_LOCATION = "set_focus_location",
   TOGGLE_TRACKS = "toggle_tracks",
-  UPDATE_LOCATION = "update_location",
-  UPDATE_SCROLL_POSITION = "update_scroll_position",
-  UPDATE_TRACK_POSITION = "upadte_track_position",
   ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside", // TODO: sometime later, unify underscores vs hyphens (together with Genome Browser)
-  ZMENU_CREATE = "create_zmenu",
-  ZMENU_DESTROY = "destroy_zmenu",
   ZMENU_ENTER = "zmenu-enter",
   ZMENU_LEAVE = "zmenu-leave",
-  ZMENU_REPOSITION = "update_zmenu_position",
   ZOOM_IN = "zoom_by",
   ZOOM_OUT = "zoom_by"
 }
 
+
+export enum IncomingActionType {
+  GENOME_BROWSER_READY = 'genome_browser_ready',
+  UPDATE_LOCATION = 'update_location',
+  UPDATE_SCROLL_POSITION = 'update_scroll_position',
+  UPDATE_TRACK_POSITION = 'upadte_track_position',
+  ZMENU_CREATE = 'create_zmenu',
+  ZMENU_DESTROY = 'destroy_zmenu',
+  ZMENU_REPOSITION = 'update_zmenu_position'
+}
+
 export type GenomeBrowserReadyAction = {
-  type: ActionType.GENOME_BROWSER_READY;
+  type: IncomingActionType.GENOME_BROWSER_READY;
   payload: never;
 };
 
 export type BrowserLocationUpdateAction = {
-  type: ActionType.UPDATE_LOCATION;
+  type: IncomingActionType.UPDATE_LOCATION;
   payload: {
     bumper?: BrowserNavStates;
     "intended-location"?: ChrLocation;
@@ -47,17 +51,17 @@ export type BrowserLocationUpdateAction = {
 };
 
 export type UpdateCogPositionAction = {
-  type: ActionType.UPDATE_SCROLL_POSITION;
+  type: IncomingActionType.UPDATE_SCROLL_POSITION;
   payload: CogScrollPayload;
 };
 
 export type UpdateCogTrackPositionAction = {
-  type: ActionType.UPDATE_TRACK_POSITION;
+  type: IncomingActionType.UPDATE_TRACK_POSITION;
   payload: CogTrackScrollPayload;
 };
 
 export type ZmenuCreateAction = {
-  type: ActionType.ZMENU_CREATE;
+  type: IncomingActionType.ZMENU_CREATE;
   payload: {
     id: string;
     anchor_coordinates: AnchorCoordinates;
@@ -66,12 +70,12 @@ export type ZmenuCreateAction = {
 };
 
 export type ZmenuDestroyAction = {
-  type: ActionType.ZMENU_DESTROY;
+  type: IncomingActionType.ZMENU_DESTROY;
   payload: { id: string };
 };
 
 export type ZmenuRepositionAction = {
-  type: ActionType.ZMENU_REPOSITION;
+  type: IncomingActionType.ZMENU_REPOSITION;
   payload: {
     id: string;
     anchor_coordinates: {
@@ -82,7 +86,7 @@ export type ZmenuRepositionAction = {
 };
 
 export type BrowserToggleTracksAction = {
-  type: ActionType.TOGGLE_TRACKS;
+  type: OutgoingActionType.TOGGLE_TRACKS;
   payload: {
     on?: string | string[];
     off?: string | string[];
@@ -90,14 +94,14 @@ export type BrowserToggleTracksAction = {
 };
 
 export type BrowserSetFocusAction = {
-  type: ActionType.SET_FOCUS;
+  type: OutgoingActionType.SET_FOCUS;
   payload: {
     focus?: string | undefined;
   };
 };
 
 export type BrowserSetFocusLocationAction = {
-  type: ActionType.SET_FOCUS_LOCATION;
+  type: OutgoingActionType.SET_FOCUS_LOCATION;
   payload: {
     stick: string;
     goto: string;
@@ -106,7 +110,7 @@ export type BrowserSetFocusLocationAction = {
 };
 
 export type ActivateBrowserAction = {
-  type: ActionType.ACTIVATE_BROWSER;
+  type: OutgoingActionType.ACTIVATE_BROWSER;
   payload: {
     "config-url": string;
     key: string;
@@ -115,65 +119,58 @@ export type ActivateBrowserAction = {
 };
 
 export type ZmenuEnterAction = {
-  type: ActionType.ZMENU_ENTER;
+  type: OutgoingActionType.ZMENU_ENTER;
   payload: {
     id: string;
   };
 };
 
 export type ZmenuOutsideActivityAction = {
-  type: ActionType.ZMENU_ACTIVITY_OUTSIDE;
+  type: OutgoingActionType.ZMENU_ACTIVITY_OUTSIDE;
   payload: {
     id: string;
   };
 };
 
 export type ZmenuLeaveAction = {
-  type: ActionType.ZMENU_LEAVE;
+  type: OutgoingActionType.ZMENU_LEAVE;
   payload: {
     id: string;
   };
 };
 
 export type MoveUpAction = {
-  type: ActionType.MOVE_UP;
+  type: OutgoingActionType.MOVE_UP;
   payload: { move_up_px: number };
 };
 
 export type MoveDownAction = {
-  type: ActionType.MOVE_DOWN;
+  type: OutgoingActionType.MOVE_DOWN;
   payload: { move_down_px: number };
 };
 
 export type MoveLeftAction = {
-  type: ActionType.MOVE_LEFT;
+  type: OutgoingActionType.MOVE_LEFT;
   payload: { move_left_px: number };
 };
 
 export type MoveRightAction = {
-  type: ActionType.MOVE_RIGHT;
+  type: OutgoingActionType.MOVE_RIGHT;
   payload: { move_right_px: number };
 };
 
 export type ZoomInAction = {
-  type: ActionType.ZOOM_IN;
+  type: OutgoingActionType.ZOOM_IN;
   payload: { zoom_by: number };
 };
 
 export type ZoomOutAction = {
-  type: ActionType.ZOOM_OUT;
+  type: OutgoingActionType.ZOOM_OUT;
   payload: { zoom_by: number };
 };
 
-export type Action =
+export type OutgoingAction =
   | ActivateBrowserAction
-  | GenomeBrowserReadyAction
-  | BrowserLocationUpdateAction
-  | UpdateCogPositionAction
-  | UpdateCogTrackPositionAction
-  | ZmenuCreateAction
-  | ZmenuDestroyAction
-  | ZmenuRepositionAction
   | BrowserToggleTracksAction
   | ZmenuEnterAction
   | ZmenuLeaveAction
@@ -187,6 +184,16 @@ export type Action =
   | ZoomInAction
   | ZoomOutAction;
 
-export const createAction = (action: Action) => {
+
+export type IncomingAction = 
+  | GenomeBrowserReadyAction
+  | BrowserLocationUpdateAction
+  | UpdateCogPositionAction
+  | UpdateCogTrackPositionAction
+  | ZmenuCreateAction
+  | ZmenuDestroyAction
+  | ZmenuRepositionAction
+
+export const createOutgoingAction = (action: OutgoingAction) => {
   return { ...action };
 };

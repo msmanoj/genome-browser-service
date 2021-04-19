@@ -1,4 +1,4 @@
-import { Action, ActionType } from './action';
+import { OutgoingAction, OutgoingActionType, IncomingAction } from './action';
 
 const subscriptions = new Map<string, Set<Function>>();
 
@@ -13,7 +13,7 @@ export enum BrowserMessagingType {
 
 type IncomingMessageEventData = {
   type: BrowserMessagingType.BPANE_OUT;
-} & Action;
+} & IncomingAction;
 
 class GenomeBrowserService {
 
@@ -29,7 +29,7 @@ class GenomeBrowserService {
   private ping() {
     window.postMessage(
       {
-        type: ActionType.PING
+        type: OutgoingActionType.PING
       },
       '*'
     );
@@ -52,17 +52,17 @@ class GenomeBrowserService {
     subscriptionsToAction?.forEach(fn => fn(payload));
   }
   
-  public send = (action: Action) => {
+  public send = (action: OutgoingAction) => {
     if (!this.element) {
       return;
     }
     let type: any = action.type;
 
-    if( type === ActionType.ACTIVATE_BROWSER ){
+    if( type === OutgoingActionType.ACTIVATE_BROWSER ){
       type = BrowserMessagingType.BPANE_ACTIVATE;
-    } else if( type === ActionType.ACTIVATE_BROWSER ){
+    } else if( type === OutgoingActionType.ACTIVATE_BROWSER ){
       type = BrowserMessagingType.BPANE_ACTIVATE;
-    } else if( type === ActionType.PING ) {
+    } else if( type === OutgoingActionType.PING ) {
       type = BrowserMessagingType.BPANE_READY_QUERY;
     }else {
       type = BrowserMessagingType.BPANE;

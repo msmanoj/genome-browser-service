@@ -1,4 +1,4 @@
-import { Action } from './action';
+import { OutgoingAction } from './action';
 export declare enum BrowserMessagingType {
     BPANE_READY_QUERY = "bpane-ready-query",
     BPANE_ACTIVATE = "bpane-activate",
@@ -13,7 +13,7 @@ declare class GenomeBrowserService {
     private ping;
     private subscribeToActions;
     private handleAction;
-    send: (action: Action) => void;
+    send: (action: OutgoingAction) => void;
     subscribe: (action: string, callback: Function) => {
         unsubscribe(): void;
     };

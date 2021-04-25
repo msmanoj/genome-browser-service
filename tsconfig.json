@@ -18,6 +18,7 @@
       "lib/**/*.spec.ts"
     ],
     "include": [
-      "src"
+      "src/*",
+      "src/peregrine"
     ]
   }

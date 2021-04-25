@@ -1,5 +1,5 @@
 import { OutgoingAction, OutgoingActionType, IncomingAction } from './action';
-import init from './peregrine/peregrine_ensembl.js';
+import init from '../lib/peregrine/peregrine_ensembl.js';
 
 const subscriptions = new Map<string, Set<Function>>();
 

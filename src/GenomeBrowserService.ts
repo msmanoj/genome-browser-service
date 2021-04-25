@@ -1,4 +1,5 @@
 import { OutgoingAction, OutgoingActionType, IncomingAction } from './action';
+import init from './peregrine/peregrine_ensembl.js';
 
 const subscriptions = new Map<string, Set<Function>>();
 
@@ -27,12 +28,7 @@ class GenomeBrowserService {
   };
 
   private ping() {
-    window.postMessage(
-      {
-        type: OutgoingActionType.PING
-      },
-      '*'
-    );
+    init();
   }
 
   private subscribeToActions() {

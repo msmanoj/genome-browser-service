@@ -7,7 +7,6 @@ export declare enum BrowserMessagingType {
     BPANE_OUT = "bpane-out"
 }
 declare class GenomeBrowserService {
-    private element;
     private elementId;
     constructor(elementId: string);
     private ping;
@@ -18,6 +17,5 @@ declare class GenomeBrowserService {
         unsubscribe(): void;
     };
     getElementId: () => string;
-    clearElement: () => null;
 }
 export default GenomeBrowserService;

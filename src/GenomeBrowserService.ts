@@ -18,7 +18,6 @@ type IncomingMessageEventData = {
 
 class GenomeBrowserService {
 
-  private element: HTMLElement | null= null;
   private elementId: string = '';
 
    constructor (elementId: string) {
@@ -52,7 +51,7 @@ class GenomeBrowserService {
   }
   
   public send = (action: OutgoingAction) => {
-    if (!this.element) {
+    if (!this.elementId) {
       return;
     }
     let type: any = action.type;
@@ -90,8 +89,7 @@ class GenomeBrowserService {
   };
 
   public getElementId = () => this.elementId;
-  
-  public clearElement = () => this.element = null;
+
   
 }
 

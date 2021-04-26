@@ -63,6 +63,8 @@ class GenomeBrowserService {
       type = BrowserMessagingType.BPANE_ACTIVATE;
     } else if( type === OutgoingActionType.PING ) {
       type = BrowserMessagingType.BPANE_READY_QUERY;
+    } else if(type === OutgoingActionType.SET_FOCUS) {
+      set_stick(action.payload?.focus as string)
     } else {
       type = BrowserMessagingType.BPANE;
     }

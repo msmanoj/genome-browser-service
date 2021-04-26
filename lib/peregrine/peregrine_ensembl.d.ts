@@ -7,8 +7,13 @@ export function main(): void;
 */
 export function init_panic_hook(): void;
 /**
+* @param {string} stick_id
 */
-export function set_stick(): void;
+export function set_stick(stick_id: string): void;
+/**
+* @param {any} message
+*/
+export function receive_message(message: any): void;
 /**
 * @param {number} pos
 */
@@ -24,7 +29,8 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly main: () => void;
   readonly init_panic_hook: () => void;
-  readonly set_stick: () => void;
+  readonly set_stick: (a: number, b: number) => void;
+  readonly receive_message: (a: number) => void;
   readonly set_x: (a: number) => void;
   readonly set_bp_per_screen: (a: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;

@@ -28,7 +28,7 @@ class GenomeBrowserService {
   };
 
   private ping() {
-    if(!document.getElementById(this.elementId).innerHTML){
+    if(!document.getElementById(this.elementId)?.innerHTML){
       init();
     }
     
@@ -63,7 +63,7 @@ class GenomeBrowserService {
       type = BrowserMessagingType.BPANE_ACTIVATE;
     } else if( type === OutgoingActionType.PING ) {
       type = BrowserMessagingType.BPANE_READY_QUERY;
-    } else if(type === OutgoingActionType.SET_FOCUS) {
+    } else if(action.type === OutgoingActionType.SET_FOCUS) {
       set_stick(action.payload?.focus as string)
     } else {
       type = BrowserMessagingType.BPANE;

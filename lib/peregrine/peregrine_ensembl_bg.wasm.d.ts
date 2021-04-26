@@ -3,6 +3,9 @@
 export const memory: WebAssembly.Memory;
 export function main(): void;
 export function init_panic_hook(): void;
+export function set_stick(): void;
+export function set_x(a: number): void;
+export function set_bp_per_screen(a: number): void;
 export function __wbindgen_malloc(a: number): number;
 export function __wbindgen_realloc(a: number, b: number, c: number): number;
 export const __wbindgen_export_2: WebAssembly.Table;

@@ -1,5 +1,5 @@
 import { OutgoingAction, OutgoingActionType, IncomingAction } from './action';
-import init from '../lib/peregrine/peregrine_ensembl.js';
+import init, { receive_message, set_stick, set_x, set_bp_per_screen } from '../lib/peregrine/peregrine_ensembl.js';
 
 const subscriptions = new Map<string, Set<Function>>();
 
@@ -28,7 +28,10 @@ class GenomeBrowserService {
   };
 
   private ping() {
-    init();
+    if(!document.getElementById(this.elementId).innerHTML){
+      init();
+    }
+    
   }
 
   private subscribeToActions() {
@@ -60,14 +63,11 @@ class GenomeBrowserService {
       type = BrowserMessagingType.BPANE_ACTIVATE;
     } else if( type === OutgoingActionType.PING ) {
       type = BrowserMessagingType.BPANE_READY_QUERY;
-    }else {
+    } else {
       type = BrowserMessagingType.BPANE;
     }
 
-    window.postMessage(
-      { ...action.payload, type},
-      '*'
-    );
+    receive_message(action);
 
   };
   

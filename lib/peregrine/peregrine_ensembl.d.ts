@@ -6,6 +6,17 @@ export function main(): void;
 /**
 */
 export function init_panic_hook(): void;
+/**
+*/
+export function set_stick(): void;
+/**
+* @param {number} pos
+*/
+export function set_x(pos: number): void;
+/**
+* @param {number} bp_per_screen
+*/
+export function set_bp_per_screen(bp_per_screen: number): void;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -13,6 +24,9 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly main: () => void;
   readonly init_panic_hook: () => void;
+  readonly set_stick: () => void;
+  readonly set_x: (a: number) => void;
+  readonly set_bp_per_screen: (a: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;

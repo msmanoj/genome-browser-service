@@ -7,21 +7,25 @@ export function main(): void;
 */
 export function init_panic_hook(): void;
 /**
-* @param {string} stick_id
-*/
-export function set_stick(stick_id: string): void;
-/**
 * @param {any} message
 */
 export function receive_message(message: any): void;
+/**
+* @param {number} bp_per_screen
+*/
+export function set_bp_per_screen(bp_per_screen: number): void;
 /**
 * @param {number} pos
 */
 export function set_x(pos: number): void;
 /**
-* @param {number} bp_per_screen
+* @param {number} y
 */
-export function set_bp_per_screen(bp_per_screen: number): void;
+export function set_y(y: number): void;
+/**
+* @param {string} track
+*/
+export function add_track(track: string): void;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -29,10 +33,11 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly main: () => void;
   readonly init_panic_hook: () => void;
-  readonly set_stick: (a: number, b: number) => void;
   readonly receive_message: (a: number) => void;
-  readonly set_x: (a: number) => void;
   readonly set_bp_per_screen: (a: number) => void;
+  readonly set_x: (a: number) => void;
+  readonly set_y: (a: number) => void;
+  readonly add_track: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;

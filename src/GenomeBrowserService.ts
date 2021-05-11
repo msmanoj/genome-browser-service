@@ -84,7 +84,7 @@ class GenomeBrowserService {
 
     let type: any = action.type;
 
-    if( type === OutgoingActionType.PING ) {
+    if( type === OutgoingActionType.ACTIVATE_BROWSER ) {
       
       this.ping();
       return;
@@ -95,14 +95,7 @@ class GenomeBrowserService {
     }
 
 
-    
-
-    if( type === OutgoingActionType.ACTIVATE_BROWSER ){
-
-      type = BrowserMessagingType.BPANE_ACTIVATE;
-      
-
-    } else if(action.type === OutgoingActionType.SET_FOCUS) {
+   if(action.type === OutgoingActionType.SET_FOCUS) {
 
       this.genomeBrowser.set_stick(action.payload?.focus as string)
     

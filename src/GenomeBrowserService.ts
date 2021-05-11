@@ -47,6 +47,7 @@ class GenomeBrowserService {
       this.genomeBrowser = new GenomeBrowser();
       this.genomeBrowser.go();
       this.genomeBrowser.set_stick("homo_sapiens_GCA_000001405_27:1");
+      this.genomeBrowser.set_switch(["track","gene-pc-fwd"]);
       this.genomeBrowser.set_message_reporter(this.handleIncoming);
     }
     
@@ -75,19 +76,29 @@ class GenomeBrowserService {
   }
   
   public send = (action: OutgoingAction) => {
-    if (!this.elementId || !this.genomeBrowser) {
+    if (!this.elementId) {
       return;
     }
+
     let type: any = action.type;
+
+    if( type === OutgoingActionType.PING ) {
+      
+      this.ping();
+      return;
+    }
+
+    if (!this.genomeBrowser) {
+      return;
+    }
+
+
+    
 
     if( type === OutgoingActionType.ACTIVATE_BROWSER ){
 
       type = BrowserMessagingType.BPANE_ACTIVATE;
       
-
-    } else if( type === OutgoingActionType.PING ) {
-      
-      this.ping();
 
     } else if(action.type === OutgoingActionType.SET_FOCUS) {
 

@@ -41,10 +41,12 @@ class GenomeBrowserService {
     this.ping();
   };
 
-  private ping() {
+  private async ping() {
     if(!document.getElementById(this.elementId)?.innerHTML){
-      init();
+      await init();
       this.genomeBrowser = new GenomeBrowser();
+      this.genomeBrowser.go();
+      this.genomeBrowser.set_stick("homo_sapiens_GCA_000001405_27:1");
       this.genomeBrowser.set_message_reporter(this.handleIncoming);
     }
     
@@ -81,7 +83,7 @@ class GenomeBrowserService {
     if( type === OutgoingActionType.ACTIVATE_BROWSER ){
 
       type = BrowserMessagingType.BPANE_ACTIVATE;
-      this.genomeBrowser.go();
+      
 
     } else if( type === OutgoingActionType.PING ) {
       

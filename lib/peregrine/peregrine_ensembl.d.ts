@@ -7,44 +7,73 @@ export function main(): void;
 */
 export function init_panic_hook(): void;
 /**
+*/
+export class GenomeBrowser {
+  free(): void;
+/**
+*/
+  constructor();
+/**
+*/
+  go(): void;
+/**
+* @param {string} stick_id
+*/
+  set_stick(stick_id: string): void;
+/**
 * @param {any} message
 */
-export function receive_message(message: any): void;
+  static receive_message(message: any): void;
 /**
 * @param {number} bp_per_screen
 */
-export function set_bp_per_screen(bp_per_screen: number): void;
+  set_bp_per_screen(bp_per_screen: number): void;
 /**
 * @param {number} pos
 */
-export function set_x(pos: number): void;
+  set_x(pos: number): void;
 /**
 * @param {number} y
 */
-export function set_y(y: number): void;
+  set_y(y: number): void;
 /**
-* @param {string} track
+* @param {any} path
 */
-export function add_track(track: string): void;
+  set_switch(path: any): void;
+/**
+* @param {any} path
+*/
+  clear_switch(path: any): void;
+/**
+* @param {Function} f
+*/
+  set_message_reporter(f: Function): void;
+}
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_genomebrowser_free: (a: number) => void;
+  readonly genomebrowser_new: () => number;
+  readonly genomebrowser_go: (a: number) => void;
+  readonly genomebrowser_set_stick: (a: number, b: number, c: number) => void;
+  readonly genomebrowser_receive_message: (a: number) => void;
+  readonly genomebrowser_set_bp_per_screen: (a: number, b: number) => void;
+  readonly genomebrowser_set_x: (a: number, b: number) => void;
+  readonly genomebrowser_set_y: (a: number, b: number) => void;
+  readonly genomebrowser_set_switch: (a: number, b: number) => void;
+  readonly genomebrowser_clear_switch: (a: number, b: number) => void;
+  readonly genomebrowser_set_message_reporter: (a: number, b: number) => void;
   readonly main: () => void;
   readonly init_panic_hook: () => void;
-  readonly receive_message: (a: number) => void;
-  readonly set_bp_per_screen: (a: number) => void;
-  readonly set_x: (a: number) => void;
-  readonly set_y: (a: number) => void;
-  readonly add_track: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;
-  readonly _dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__hdcce7b55225956a9: (a: number, b: number) => void;
-  readonly _dyn_core__ops__function__Fn__A_B___Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__hd9f62d3bae441d65: (a: number, b: number, c: number, d: number) => void;
-  readonly _dyn_core__ops__function__Fn_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h6652aee071b1b33a: (a: number, b: number) => void;
-  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h8d340687c1cd9253: (a: number, b: number, c: number) => void;
+  readonly _dyn_core__ops__function__Fn_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h537bcbb6236da15f: (a: number, b: number) => void;
+  readonly _dyn_core__ops__function__Fn__A_B___Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h91a9db64bb157ade: (a: number, b: number, c: number, d: number) => void;
+  readonly _dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__haa571bedb4e1d494: (a: number, b: number) => void;
+  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h6777e91d3badaeb9: (a: number, b: number, c: number) => void;
   readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
   readonly __wbindgen_start: () => void;

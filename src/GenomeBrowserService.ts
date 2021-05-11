@@ -1,5 +1,7 @@
 import { OutgoingAction, OutgoingActionType, IncomingAction } from './action';
-import init, { receive_message, set_stick, set_x, set_bp_per_screen } from '../lib/peregrine/peregrine_ensembl.js';
+import init, { 
+  GenomeBrowser
+} from '../lib/peregrine/peregrine_ensembl.js';
 
 const subscriptions = new Map<string, Set<Function>>();
 
@@ -12,6 +14,18 @@ export enum BrowserMessagingType {
   BPANE_OUT = 'bpane-out'
 }
 
+
+type GenomeBrowserType = {
+  go: () => void,
+  set_stick: (stickId:  string) => void,
+  set_bp_per_screen: (bpPerScreen: number) => void,
+  set_x: (x: number) => void,
+  set_y: (y: number) => void,
+  set_switch: (path: string[]) => void
+  set_message_reporter: ( callback: (x: any) => void) => void
+}
+
+
 type IncomingMessageEventData = {
   type: BrowserMessagingType.BPANE_OUT;
 } & IncomingAction;
@@ -19,6 +33,7 @@ type IncomingMessageEventData = {
 class GenomeBrowserService {
 
   private elementId: string = '';
+  genomeBrowser: GenomeBrowserType | null = null;
 
    constructor (elementId: string) {
     this.elementId = elementId;
@@ -29,6 +44,8 @@ class GenomeBrowserService {
   private ping() {
     if(!document.getElementById(this.elementId)?.innerHTML){
       init();
+      this.genomeBrowser = new GenomeBrowser();
+      this.genomeBrowser.set_message_reporter(this.handleIncoming);
     }
     
   }
@@ -49,26 +66,41 @@ class GenomeBrowserService {
 
     subscriptionsToAction?.forEach(fn => fn(payload));
   }
+
+  private handleIncoming = (message: any) => {
+
+    console.log(message);
+  }
   
   public send = (action: OutgoingAction) => {
-    if (!this.elementId) {
+    if (!this.elementId || !this.genomeBrowser) {
       return;
     }
     let type: any = action.type;
 
     if( type === OutgoingActionType.ACTIVATE_BROWSER ){
+
       type = BrowserMessagingType.BPANE_ACTIVATE;
-    } else if( type === OutgoingActionType.ACTIVATE_BROWSER ){
-      type = BrowserMessagingType.BPANE_ACTIVATE;
+      this.genomeBrowser.go();
+
     } else if( type === OutgoingActionType.PING ) {
-      type = BrowserMessagingType.BPANE_READY_QUERY;
+      
+      this.ping();
+
     } else if(action.type === OutgoingActionType.SET_FOCUS) {
-      set_stick(action.payload?.focus as string)
+
+      this.genomeBrowser.set_stick(action.payload?.focus as string)
+    
+    } else if(action.type === OutgoingActionType.TOGGLE_TRACKS){
+      console.log(action.payload);
+      this.genomeBrowser.set_switch(["Track"])
+
     } else {
+
       type = BrowserMessagingType.BPANE;
+
     }
 
-    receive_message(action);
 
   };
   

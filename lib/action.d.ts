@@ -152,7 +152,10 @@ export declare type ZoomOutAction = {
         zoom_by: number;
     };
 };
-export declare type OutgoingAction = ActivateBrowserAction | BrowserToggleTracksAction | ZmenuEnterAction | ZmenuLeaveAction | ZmenuOutsideActivityAction | BrowserSetFocusLocationAction | BrowserSetFocusAction | MoveUpAction | MoveDownAction | MoveLeftAction | MoveRightAction | ZoomInAction | ZoomOutAction;
+export declare type PingAction = {
+    type: OutgoingActionType.ZOOM_OUT;
+};
+export declare type OutgoingAction = PingAction | ActivateBrowserAction | BrowserToggleTracksAction | ZmenuEnterAction | ZmenuLeaveAction | ZmenuOutsideActivityAction | BrowserSetFocusLocationAction | BrowserSetFocusAction | MoveUpAction | MoveDownAction | MoveLeftAction | MoveRightAction | ZoomInAction | ZoomOutAction;
 export declare type IncomingAction = GenomeBrowserReadyAction | BrowserLocationUpdateAction | UpdateCogPositionAction | UpdateCogTrackPositionAction | ZmenuCreateAction | ZmenuDestroyAction | ZmenuRepositionAction;
 export declare const createOutgoingAction: (action: OutgoingAction) => {
     type: OutgoingActionType.TOGGLE_TRACKS;
@@ -224,4 +227,6 @@ export declare const createOutgoingAction: (action: OutgoingAction) => {
     payload: {
         zoom_by: number;
     };
+} | {
+    type: OutgoingActionType.ZOOM_OUT;
 };

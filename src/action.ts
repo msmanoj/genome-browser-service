@@ -169,7 +169,12 @@ export type ZoomOutAction = {
   payload: { zoom_by: number };
 };
 
+export type PingAction = {
+  type: OutgoingActionType.ZOOM_OUT;
+};
+
 export type OutgoingAction =
+  | PingAction
   | ActivateBrowserAction
   | BrowserToggleTracksAction
   | ZmenuEnterAction

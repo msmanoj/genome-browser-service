@@ -86,6 +86,8 @@ class GenomeBrowserService {
       return;
     }
 
+    this.genomeBrowser = new GenomeBrowser();
+
     let type: any = action.type;
 
     if( type === OutgoingActionType.ACTIVATE_BROWSER ) {
@@ -93,11 +95,6 @@ class GenomeBrowserService {
       this.ping();
       return;
     }
-
-    if (!this.genomeBrowser) {
-      return;
-    }
-
 
    if(action.type === OutgoingActionType.SET_FOCUS) {
 

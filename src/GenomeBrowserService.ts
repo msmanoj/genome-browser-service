@@ -48,6 +48,8 @@ class GenomeBrowserService {
       this.genomeBrowser.go();
       this.genomeBrowser.set_stick("homo_sapiens_GCA_000001405_27:1");
       this.genomeBrowser.set_switch(["track","gene-pc-fwd"]);
+      this.genomeBrowser.set_x(2500000);
+      this.genomeBrowser.set_bp_per_screen(1000000);
       this.genomeBrowser.set_message_reporter(function(x) {
         console.error("this is my message receiver: "+x);
       });

@@ -170,7 +170,7 @@ export type ZoomOutAction = {
 };
 
 export type PingAction = {
-  type: OutgoingActionType.ZOOM_OUT;
+  type: OutgoingActionType.PING;
 };
 
 export type OutgoingAction =

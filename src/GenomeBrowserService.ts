@@ -78,6 +78,9 @@ class GenomeBrowserService {
   }
   
   public send = (action: OutgoingAction) => {
+
+    console.log(action);
+
     if (!this.elementId) {
       return;
     }

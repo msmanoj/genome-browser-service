@@ -38,7 +38,6 @@ class GenomeBrowserService {
    constructor (elementId: string) {
     this.elementId = elementId;
     this.subscribeToActions();
-    this.ping();
   };
 
   private async ping() {

@@ -14,8 +14,8 @@ export declare enum OutgoingActionType {
     ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside",
     ZMENU_ENTER = "zmenu-enter",
     ZMENU_LEAVE = "zmenu-leave",
-    ZOOM_IN = "zoom_by",
-    ZOOM_OUT = "zoom_by"
+    ZOOM_IN = "zoom_in",
+    ZOOM_OUT = "zoom_out"
 }
 export declare enum IncomingActionType {
     GENOME_BROWSER_READY = "genome_browser_ready",

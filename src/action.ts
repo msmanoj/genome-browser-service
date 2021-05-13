@@ -22,8 +22,8 @@ export enum OutgoingActionType {
   ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside", // TODO: sometime later, unify underscores vs hyphens (together with Genome Browser)
   ZMENU_ENTER = "zmenu-enter",
   ZMENU_LEAVE = "zmenu-leave",
-  ZOOM_IN = "zoom_by",
-  ZOOM_OUT = "zoom_by"
+  ZOOM_IN = "zoom_in",
+  ZOOM_OUT = "zoom_out"
 }
 
 

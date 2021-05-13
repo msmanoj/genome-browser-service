@@ -36,6 +36,7 @@ class GenomeBrowserService {
   private elementId: string = '';
   genomeBrowser: GenomeBrowserType | null = null;
   bpPerScreen = 1000000;
+  x = 2500000;
 
    constructor (elementId: string) {
     this.elementId = elementId;
@@ -48,7 +49,7 @@ class GenomeBrowserService {
       this.genomeBrowser.go();
       this.genomeBrowser.set_stick("homo_sapiens_GCA_000001405_27:1");
       this.genomeBrowser.set_switch(["track","gene-pc-fwd"]);
-      this.genomeBrowser.set_x(2500000);
+      this.genomeBrowser.set_x(this.x);
       this.genomeBrowser.set_bp_per_screen(this.bpPerScreen);
       this.genomeBrowser.set_message_reporter(function(x) {
         console.error("this is my message receiver: "+x);
@@ -115,8 +116,9 @@ class GenomeBrowserService {
 
     } else if(action.type === OutgoingActionType.ZOOM_IN){
       this.bpPerScreen = this.bpPerScreen - 100;
+      this.x = this.x  - 100;
       this.genomeBrowser.set_bp_per_screen(this.bpPerScreen)
-
+      this.genomeBrowser.set_x(this.x);
     } else {
 
       type = BrowserMessagingType.BPANE;

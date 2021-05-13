@@ -20,6 +20,7 @@ declare class GenomeBrowserService {
     private elementId;
     genomeBrowser: GenomeBrowserType | null;
     bpPerScreen: number;
+    x: number;
     constructor(elementId: string);
     private ping;
     private subscribeToActions;

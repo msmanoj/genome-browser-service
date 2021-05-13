@@ -100,14 +100,14 @@ export type BrowserToggleTracksAction = {
 export type TurnOnTracksAction = {
   type: OutgoingActionType.TURN_ON_TRACKS;
   payload: {
-    track_ids?: string | string[];
+    track_ids: string[];
   };
 };
 
 export type TurnOffTracksAction = {
   type: OutgoingActionType.TURN_OFF_TRACKS;
   payload: {
-    track_ids?: string | string[];
+    track_ids: string[];
   };
 };
 

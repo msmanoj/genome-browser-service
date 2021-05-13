@@ -81,13 +81,13 @@ export declare type BrowserToggleTracksAction = {
 export declare type TurnOnTracksAction = {
     type: OutgoingActionType.TURN_ON_TRACKS;
     payload: {
-        track_ids?: string | string[];
+        track_ids: string[];
     };
 };
 export declare type TurnOffTracksAction = {
     type: OutgoingActionType.TURN_OFF_TRACKS;
     payload: {
-        track_ids?: string | string[];
+        track_ids: string[];
     };
 };
 export declare type BrowserSetFocusAction = {
@@ -180,12 +180,12 @@ export declare const createOutgoingAction: (action: OutgoingAction) => {
 } | {
     type: OutgoingActionType.TURN_ON_TRACKS;
     payload: {
-        track_ids?: string | string[];
+        track_ids: string[];
     };
 } | {
     type: OutgoingActionType.TURN_OFF_TRACKS;
     payload: {
-        track_ids?: string | string[];
+        track_ids: string[];
     };
 } | {
     type: OutgoingActionType.SET_FOCUS;

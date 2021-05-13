@@ -22,6 +22,7 @@ type GenomeBrowserType = {
   set_x: (x: number) => void,
   set_y: (y: number) => void,
   set_switch: (path: string[]) => void
+  clear_switch: (path: string[]) => void
   set_message_reporter: ( callback: (x: any) => void) => void
 }
 
@@ -102,6 +103,14 @@ class GenomeBrowserService {
     } else if(action.type === OutgoingActionType.TOGGLE_TRACKS){
       console.log(action.payload);
       this.genomeBrowser.set_switch(["track"])
+
+    } else if(action.type === OutgoingActionType.TURN_ON_TRACKS){
+
+      this.genomeBrowser.set_switch(["track", ...action.payload.track_ids])
+
+    } else if(action.type === OutgoingActionType.TURN_OFF_TRACKS){
+
+      this.genomeBrowser.clear_switch(["track", ...action.payload.track_ids])
 
     } else {
 

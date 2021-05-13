@@ -13,6 +13,7 @@ declare type GenomeBrowserType = {
     set_x: (x: number) => void;
     set_y: (y: number) => void;
     set_switch: (path: string[]) => void;
+    clear_switch: (path: string[]) => void;
     set_message_reporter: (callback: (x: any) => void) => void;
 };
 declare class GenomeBrowserService {

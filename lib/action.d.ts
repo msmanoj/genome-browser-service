@@ -9,6 +9,8 @@ export declare enum OutgoingActionType {
     SET_FOCUS = "set_focus",
     SET_FOCUS_LOCATION = "set_focus_location",
     TOGGLE_TRACKS = "toggle_tracks",
+    TURN_ON_TRACKS = "turn_on_tracks",
+    TURN_OFF_TRACKS = "turn_off_tracks",
     ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside",
     ZMENU_ENTER = "zmenu-enter",
     ZMENU_LEAVE = "zmenu-leave",
@@ -74,6 +76,18 @@ export declare type BrowserToggleTracksAction = {
     payload: {
         on?: string | string[];
         off?: string | string[];
+    };
+};
+export declare type TurnOnTracksAction = {
+    type: OutgoingActionType.TURN_ON_TRACKS;
+    payload: {
+        track_ids?: string | string[];
+    };
+};
+export declare type TurnOffTracksAction = {
+    type: OutgoingActionType.TURN_OFF_TRACKS;
+    payload: {
+        track_ids?: string | string[];
     };
 };
 export declare type BrowserSetFocusAction = {
@@ -155,13 +169,23 @@ export declare type ZoomOutAction = {
 export declare type PingAction = {
     type: OutgoingActionType.PING;
 };
-export declare type OutgoingAction = PingAction | ActivateBrowserAction | BrowserToggleTracksAction | ZmenuEnterAction | ZmenuLeaveAction | ZmenuOutsideActivityAction | BrowserSetFocusLocationAction | BrowserSetFocusAction | MoveUpAction | MoveDownAction | MoveLeftAction | MoveRightAction | ZoomInAction | ZoomOutAction;
+export declare type OutgoingAction = PingAction | ActivateBrowserAction | BrowserToggleTracksAction | TurnOnTracksAction | TurnOffTracksAction | ZmenuEnterAction | ZmenuLeaveAction | ZmenuOutsideActivityAction | BrowserSetFocusLocationAction | BrowserSetFocusAction | MoveUpAction | MoveDownAction | MoveLeftAction | MoveRightAction | ZoomInAction | ZoomOutAction;
 export declare type IncomingAction = GenomeBrowserReadyAction | BrowserLocationUpdateAction | UpdateCogPositionAction | UpdateCogTrackPositionAction | ZmenuCreateAction | ZmenuDestroyAction | ZmenuRepositionAction;
 export declare const createOutgoingAction: (action: OutgoingAction) => {
     type: OutgoingActionType.TOGGLE_TRACKS;
     payload: {
         on?: string | string[];
         off?: string | string[];
+    };
+} | {
+    type: OutgoingActionType.TURN_ON_TRACKS;
+    payload: {
+        track_ids?: string | string[];
+    };
+} | {
+    type: OutgoingActionType.TURN_OFF_TRACKS;
+    payload: {
+        track_ids?: string | string[];
     };
 } | {
     type: OutgoingActionType.SET_FOCUS;

@@ -17,12 +17,15 @@ export enum OutgoingActionType {
   SET_FOCUS = "set_focus",
   SET_FOCUS_LOCATION = "set_focus_location",
   TOGGLE_TRACKS = "toggle_tracks",
+  TURN_ON_TRACKS = "turn_on_tracks",
+  TURN_OFF_TRACKS = "turn_off_tracks",
   ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside", // TODO: sometime later, unify underscores vs hyphens (together with Genome Browser)
   ZMENU_ENTER = "zmenu-enter",
   ZMENU_LEAVE = "zmenu-leave",
   ZOOM_IN = "zoom_by",
   ZOOM_OUT = "zoom_by"
 }
+
 
 
 export enum IncomingActionType {
@@ -90,6 +93,21 @@ export type BrowserToggleTracksAction = {
   payload: {
     on?: string | string[];
     off?: string | string[];
+  };
+};
+
+
+export type TurnOnTracksAction = {
+  type: OutgoingActionType.TURN_ON_TRACKS;
+  payload: {
+    track_ids?: string | string[];
+  };
+};
+
+export type TurnOffTracksAction = {
+  type: OutgoingActionType.TURN_OFF_TRACKS;
+  payload: {
+    track_ids?: string | string[];
   };
 };
 
@@ -177,6 +195,8 @@ export type OutgoingAction =
   | PingAction
   | ActivateBrowserAction
   | BrowserToggleTracksAction
+  | TurnOnTracksAction
+  | TurnOffTracksAction
   | ZmenuEnterAction
   | ZmenuLeaveAction
   | ZmenuOutsideActivityAction
@@ -198,6 +218,9 @@ export type IncomingAction =
   | ZmenuCreateAction
   | ZmenuDestroyAction
   | ZmenuRepositionAction
+
+
+
 
 export const createOutgoingAction = (action: OutgoingAction) => {
   return { ...action };

@@ -41,7 +41,6 @@ class GenomeBrowserService {
   };
 
   private async ping() {
-    if(!document.getElementById(this.elementId)?.innerHTML){
       await init();
       this.genomeBrowser = new GenomeBrowser();
       this.genomeBrowser.go();
@@ -52,7 +51,6 @@ class GenomeBrowserService {
       this.genomeBrowser.set_message_reporter(function(x) {
         console.error("this is my message receiver: "+x);
       });
-    }
     
   }
 
@@ -85,6 +83,7 @@ class GenomeBrowserService {
     if (!this.elementId) {
       return;
     }
+
     await init();
     this.genomeBrowser = new GenomeBrowser();
     
@@ -102,7 +101,7 @@ class GenomeBrowserService {
     
     } else if(action.type === OutgoingActionType.TOGGLE_TRACKS){
       console.log(action.payload);
-      this.genomeBrowser.set_switch(["Track"])
+      this.genomeBrowser.set_switch(["track"])
 
     } else {
 

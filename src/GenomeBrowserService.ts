@@ -78,16 +78,16 @@ class GenomeBrowserService {
     console.log(message);
   }
   
-  public send = (action: OutgoingAction) => {
+  public send = async (action: OutgoingAction) => {
 
     console.log(action);
 
     if (!this.elementId) {
       return;
     }
-
+    await init();
     this.genomeBrowser = new GenomeBrowser();
-
+    
     let type: any = action.type;
 
     if( type === OutgoingActionType.ACTIVATE_BROWSER ) {

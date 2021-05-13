@@ -23,7 +23,7 @@ declare class GenomeBrowserService {
     private subscribeToActions;
     private handleAction;
     private handleIncoming;
-    send: (action: OutgoingAction) => void;
+    send: (action: OutgoingAction) => Promise<void>;
     subscribe: (action: string, callback: Function) => {
         unsubscribe(): void;
     };

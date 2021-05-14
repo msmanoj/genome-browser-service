@@ -115,8 +115,8 @@ class GenomeBrowserService {
       this.genomeBrowser.clear_switch(["track", ...action.payload.track_ids])
 
     } else if(action.type === OutgoingActionType.ZOOM_IN){
-      this.bpPerScreen = this.bpPerScreen - 100;
-      this.x = this.x  - 100;
+      this.bpPerScreen = this.bpPerScreen - 10000;
+      this.x = this.x  - 10000;
       this.genomeBrowser.set_bp_per_screen(this.bpPerScreen)
       this.genomeBrowser.set_x(this.x);
     } else {

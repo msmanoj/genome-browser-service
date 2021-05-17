@@ -43,8 +43,11 @@ class GenomeBrowserService {
     this.subscribeToActions();
   };
 
+  public async init() {
+    await init();
+  }
+
   private async ping() {
-      await init();
       this.genomeBrowser = new GenomeBrowser();
       this.genomeBrowser.go();
       this.genomeBrowser.set_stick("homo_sapiens_GCA_000001405_27:1");

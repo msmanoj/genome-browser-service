@@ -22,6 +22,7 @@ declare class GenomeBrowserService {
     bpPerScreen: number;
     x: number;
     constructor(elementId: string);
+    init(): Promise<void>;
     private ping;
     private subscribeToActions;
     private handleAction;

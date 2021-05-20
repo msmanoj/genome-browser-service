@@ -49,12 +49,12 @@ class GenomeBrowserService {
 
   private async ping() {
       this.genomeBrowser = new GenomeBrowser();
-      this.genomeBrowser.go();
-      this.genomeBrowser.set_stick("homo_sapiens_GCA_000001405_27:1");
-      this.genomeBrowser.set_switch(["track","gene-pc-fwd"]);
-      this.genomeBrowser.set_x(this.x);
-      this.genomeBrowser.set_bp_per_screen(this.bpPerScreen);
-      this.genomeBrowser.set_message_reporter(function(x) {
+      this.genomeBrowser?.go();
+      this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
+      this.genomeBrowser?.set_switch(["track","gene-pc-fwd"]);
+      this.genomeBrowser?.set_x(this.x);
+      this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
+      this.genomeBrowser?.set_message_reporter(function(x) {
         console.error("this is my message receiver: "+x);
       });
     
@@ -103,25 +103,33 @@ class GenomeBrowserService {
 
    if(action.type === OutgoingActionType.SET_FOCUS) {
 
-      this.genomeBrowser.set_stick(action.payload?.focus as string)
+      this.genomeBrowser?.set_stick(action.payload?.focus as string)
     
     } else if(action.type === OutgoingActionType.TOGGLE_TRACKS){
       console.log(action.payload);
-      this.genomeBrowser.set_switch(["track"])
+      this.genomeBrowser?.set_switch(["track"])
 
     } else if(action.type === OutgoingActionType.TURN_ON_TRACKS){
 
-      this.genomeBrowser.set_switch(["track", ...action.payload.track_ids])
+      this.genomeBrowser?.set_switch(["track", ...action.payload.track_ids])
 
     } else if(action.type === OutgoingActionType.TURN_OFF_TRACKS){
 
-      this.genomeBrowser.clear_switch(["track", ...action.payload.track_ids])
+      this.genomeBrowser?.clear_switch(["track", ...action.payload.track_ids])
 
     } else if(action.type === OutgoingActionType.ZOOM_IN){
+      
       this.bpPerScreen = this.bpPerScreen - 10000;
       this.x = this.x  - 10000;
-      this.genomeBrowser.set_bp_per_screen(this.bpPerScreen)
-      this.genomeBrowser.set_x(this.x);
+      this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen)
+      this.genomeBrowser?.set_x(this.x);
+    
+    } else if(action.type === OutgoingActionType.ZOOM_OUT){
+
+      this.bpPerScreen = this.bpPerScreen + 10000;
+      this.x = this.x  + 10000;
+      this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen)
+      this.genomeBrowser?.set_x(this.x);
     } else {
 
       type = BrowserMessagingType.BPANE;

@@ -89,9 +89,6 @@ class GenomeBrowserService {
     if (!this.elementId) {
       return;
     }
-
-    await init();
-    this.genomeBrowser = new GenomeBrowser();
     
     let type: any = action.type;
 
@@ -118,7 +115,7 @@ class GenomeBrowserService {
       this.genomeBrowser?.clear_switch(["track", ...action.payload.track_ids])
 
     } else if(action.type === OutgoingActionType.ZOOM_IN){
-      
+
       this.bpPerScreen = this.bpPerScreen - 10000;
       this.x = this.x  - 10000;
       this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen)

@@ -31,6 +31,7 @@ type IncomingMessageEventData = {
   type: BrowserMessagingType.BPANE_OUT;
 } & IncomingAction;
 
+
 class GenomeBrowserService {
 
   private elementId: string = '';
@@ -48,7 +49,6 @@ class GenomeBrowserService {
     this.genomeBrowser = new GenomeBrowser();
     this.genomeBrowser?.go();
     this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
-    this.genomeBrowser?.set_switch(["track"]);
     this.genomeBrowser?.set_x(this.x);
     this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
     this.genomeBrowser?.set_message_reporter(function(x) {
@@ -78,6 +78,8 @@ class GenomeBrowserService {
     console.log(message);
   }
   
+
+
   public send = async (action: OutgoingAction) => {
 
     console.log(action);
@@ -95,7 +97,6 @@ class GenomeBrowserService {
       this.genomeBrowser?.set_stick(action.payload?.focus as string)
     
     } else if(action.type === OutgoingActionType.TOGGLE_TRACKS){
-      console.log(action.payload);
       this.genomeBrowser?.set_switch(["track"])
 
     } else if(action.type === OutgoingActionType.TURN_ON_TRACKS){
@@ -109,16 +110,23 @@ class GenomeBrowserService {
     } else if(action.type === OutgoingActionType.ZOOM_IN){
 
       this.bpPerScreen = this.bpPerScreen - 10000;
-      this.x = this.x  - 10000;
       this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen)
-      this.genomeBrowser?.set_x(this.x);
     
     } else if(action.type === OutgoingActionType.ZOOM_OUT){
 
       this.bpPerScreen = this.bpPerScreen + 10000;
-      this.x = this.x  + 10000;
       this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen)
+
+    } else if(action.type === OutgoingActionType.MOVE_LEFT){
+
+      this.x = this.x  - 10000;
       this.genomeBrowser?.set_x(this.x);
+    
+    } else if(action.type === OutgoingActionType.MOVE_RIGHT){
+
+      this.x = this.x + 10000;
+      this.genomeBrowser?.set_x(this.x);
+    
     } else {
 
       type = BrowserMessagingType.BPANE;

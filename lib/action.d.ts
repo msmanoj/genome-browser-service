@@ -11,6 +11,8 @@ export declare enum OutgoingActionType {
     TOGGLE_TRACKS = "toggle_tracks",
     TURN_ON_TRACKS = "turn_on_tracks",
     TURN_OFF_TRACKS = "turn_off_tracks",
+    TURN_ON_LABELS = "turn_on_labels",
+    TURN_OFF_LABELS = "turn_off_labels",
     ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside",
     ZMENU_ENTER = "zmenu-enter",
     ZMENU_LEAVE = "zmenu-leave",
@@ -86,6 +88,18 @@ export declare type TurnOnTracksAction = {
 };
 export declare type TurnOffTracksAction = {
     type: OutgoingActionType.TURN_OFF_TRACKS;
+    payload: {
+        track_ids: string[];
+    };
+};
+export declare type TurnOnLabelsAction = {
+    type: OutgoingActionType.TURN_ON_LABELS;
+    payload: {
+        track_ids: string[];
+    };
+};
+export declare type TurnOffLabelsAction = {
+    type: OutgoingActionType.TURN_OFF_LABELS;
     payload: {
         track_ids: string[];
     };
@@ -169,7 +183,7 @@ export declare type ZoomOutAction = {
 export declare type PingAction = {
     type: OutgoingActionType.PING;
 };
-export declare type OutgoingAction = PingAction | ActivateBrowserAction | BrowserToggleTracksAction | TurnOnTracksAction | TurnOffTracksAction | ZmenuEnterAction | ZmenuLeaveAction | ZmenuOutsideActivityAction | BrowserSetFocusLocationAction | BrowserSetFocusAction | MoveUpAction | MoveDownAction | MoveLeftAction | MoveRightAction | ZoomInAction | ZoomOutAction;
+export declare type OutgoingAction = PingAction | ActivateBrowserAction | BrowserToggleTracksAction | TurnOnTracksAction | TurnOffTracksAction | TurnOnLabelsAction | TurnOffLabelsAction | ZmenuEnterAction | ZmenuLeaveAction | ZmenuOutsideActivityAction | BrowserSetFocusLocationAction | BrowserSetFocusAction | MoveUpAction | MoveDownAction | MoveLeftAction | MoveRightAction | ZoomInAction | ZoomOutAction;
 export declare type IncomingAction = GenomeBrowserReadyAction | BrowserLocationUpdateAction | UpdateCogPositionAction | UpdateCogTrackPositionAction | ZmenuCreateAction | ZmenuDestroyAction | ZmenuRepositionAction;
 export declare const createOutgoingAction: (action: OutgoingAction) => {
     type: OutgoingActionType.TOGGLE_TRACKS;
@@ -184,6 +198,16 @@ export declare const createOutgoingAction: (action: OutgoingAction) => {
     };
 } | {
     type: OutgoingActionType.TURN_OFF_TRACKS;
+    payload: {
+        track_ids: string[];
+    };
+} | {
+    type: OutgoingActionType.TURN_ON_LABELS;
+    payload: {
+        track_ids: string[];
+    };
+} | {
+    type: OutgoingActionType.TURN_OFF_LABELS;
     payload: {
         track_ids: string[];
     };

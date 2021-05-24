@@ -19,6 +19,8 @@ export enum OutgoingActionType {
   TOGGLE_TRACKS = "toggle_tracks",
   TURN_ON_TRACKS = "turn_on_tracks",
   TURN_OFF_TRACKS = "turn_off_tracks",
+  TURN_ON_LABELS = "turn_on_labels",
+  TURN_OFF_LABELS = "turn_off_labels",
   ZMENU_ACTIVITY_OUTSIDE = "zmenu-activity-outside", // TODO: sometime later, unify underscores vs hyphens (together with Genome Browser)
   ZMENU_ENTER = "zmenu-enter",
   ZMENU_LEAVE = "zmenu-leave",
@@ -111,6 +113,22 @@ export type TurnOffTracksAction = {
   };
 };
 
+
+
+export type TurnOnLabelsAction = {
+  type: OutgoingActionType.TURN_ON_LABELS;
+  payload: {
+    track_ids: string[];
+  };
+};
+
+export type TurnOffLabelsAction = {
+  type: OutgoingActionType.TURN_OFF_LABELS
+  payload: {
+    track_ids: string[];
+  };
+};
+
 export type BrowserSetFocusAction = {
   type: OutgoingActionType.SET_FOCUS;
   payload: {
@@ -197,6 +215,8 @@ export type OutgoingAction =
   | BrowserToggleTracksAction
   | TurnOnTracksAction
   | TurnOffTracksAction
+  | TurnOnLabelsAction
+  | TurnOffLabelsAction
   | ZmenuEnterAction
   | ZmenuLeaveAction
   | ZmenuOutsideActivityAction

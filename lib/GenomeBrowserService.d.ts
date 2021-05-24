@@ -23,7 +23,6 @@ declare class GenomeBrowserService {
     x: number;
     constructor(elementId: string);
     init(): Promise<void>;
-    private ping;
     private subscribeToActions;
     private handleAction;
     private handleIncoming;

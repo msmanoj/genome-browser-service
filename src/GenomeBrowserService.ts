@@ -46,18 +46,14 @@ class GenomeBrowserService {
   public async init() {
     await init();
     this.genomeBrowser = new GenomeBrowser();
-  }
-
-  private async ping() {
-      this.genomeBrowser?.go();
-      this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
-      this.genomeBrowser?.set_switch(["track"]);
-      this.genomeBrowser?.set_x(this.x);
-      this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
-      this.genomeBrowser?.set_message_reporter(function(x) {
-        console.error("this is my message receiver: "+x);
-      });
-    
+    this.genomeBrowser?.go();
+    this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
+    this.genomeBrowser?.set_switch(["track"]);
+    this.genomeBrowser?.set_x(this.x);
+    this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
+    this.genomeBrowser?.set_message_reporter(function(x) {
+      console.error("this is my message receiver: "+x);
+    });
   }
 
   private subscribeToActions() {
@@ -90,7 +86,7 @@ class GenomeBrowserService {
 
     if( type === OutgoingActionType.ACTIVATE_BROWSER ) {
       
-      this.ping();
+      this.init();
       return;
     }
 

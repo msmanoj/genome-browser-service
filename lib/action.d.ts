@@ -120,11 +120,6 @@ export declare type BrowserSetFocusLocationAction = {
 };
 export declare type ActivateBrowserAction = {
     type: OutgoingActionType.ACTIVATE_BROWSER;
-    payload: {
-        "config-url": string;
-        key: string;
-        selector: string;
-    };
 };
 export declare type ZmenuEnterAction = {
     type: OutgoingActionType.ZMENU_ENTER;
@@ -225,11 +220,6 @@ export declare const createOutgoingAction: (action: OutgoingAction) => {
     };
 } | {
     type: OutgoingActionType.ACTIVATE_BROWSER;
-    payload: {
-        "config-url": string;
-        key: string;
-        selector: string;
-    };
 } | {
     type: OutgoingActionType.ZMENU_ENTER;
     payload: {

@@ -52,6 +52,7 @@ class GenomeBrowserService {
     this.genomeBrowser?.set_x(this.x);
     this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
     this.genomeBrowser?.set_message_reporter(this.handleIncoming);
+    console.log(this.genomeBrowser)
   }
 
   private subscribeToActions() {
@@ -71,7 +72,7 @@ class GenomeBrowserService {
     subscriptionsToAction?.forEach(fn => fn(payload));
   }
 
-  private handleIncoming = (message: any) => {
+  public handleIncoming = (message: any) => {
 
     console.log(message);
   }

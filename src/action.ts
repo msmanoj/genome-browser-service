@@ -147,11 +147,6 @@ export type BrowserSetFocusLocationAction = {
 
 export type ActivateBrowserAction = {
   type: OutgoingActionType.ACTIVATE_BROWSER;
-  payload: {
-    "config-url": string;
-    key: string;
-    selector: string;
-  };
 };
 
 export type ZmenuEnterAction = {

@@ -101,6 +101,8 @@ class GenomeBrowserService {
     } else if(action.type === OutgoingActionType.TURN_ON_TRACKS){
       this.genomeBrowser?.set_switch(["track"])
       this.genomeBrowser?.set_switch(["track", ...action.payload.track_ids])
+      this.genomeBrowser?.set_switch(["label"])
+      this.genomeBrowser?.set_switch(["label", ...action.payload.track_ids])
 
     } else if(action.type === OutgoingActionType.TURN_OFF_TRACKS){
 

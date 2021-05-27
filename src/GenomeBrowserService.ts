@@ -46,9 +46,9 @@ class GenomeBrowserService {
 
   public async init() {
     await init();
-    this.genomeBrowser = new GenomeBrowser();
-    this.genomeBrowser?.go();
-    this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
+    this.genomeBrowser = await new GenomeBrowser();
+    await this.genomeBrowser?.go();
+    await this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
     this.genomeBrowser?.set_x(this.x);
     this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
     this.genomeBrowser?.set_message_reporter(this.handleIncoming);

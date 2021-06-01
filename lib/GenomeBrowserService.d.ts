@@ -21,6 +21,7 @@ declare class GenomeBrowserService {
     genomeBrowser: GenomeBrowserType | null;
     bpPerScreen: number;
     x: number;
+    inited: boolean;
     constructor(elementId: string);
     init(): Promise<void>;
     private subscribeToActions;

@@ -38,6 +38,7 @@ class GenomeBrowserService {
   genomeBrowser: GenomeBrowserType | null = null;
   bpPerScreen = 1000000;
   x = 2500000;
+  inited = false;
 
    constructor (elementId: string) {
     this.elementId = elementId;
@@ -45,10 +46,14 @@ class GenomeBrowserService {
   };
 
   public async init() {
-    await init();
-    this.genomeBrowser = await new GenomeBrowser();
-    await this.genomeBrowser?.go();
-    await this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
+
+    if(!this.inited) {
+      await init();
+      this.genomeBrowser = new GenomeBrowser();
+      this.genomeBrowser?.go();  
+    }
+    this.inited = true;
+    this.genomeBrowser?.set_stick("homo_sapiens_GCA_000001405_27:1");
     this.genomeBrowser?.set_switch(["track"])
     this.genomeBrowser?.set_x(this.x);
     this.genomeBrowser?.set_bp_per_screen(this.bpPerScreen);
@@ -96,27 +101,24 @@ class GenomeBrowserService {
 
       this.genomeBrowser?.set_stick(action.payload?.focus as string)
     
-    } else if(action.type === OutgoingActionType.TOGGLE_TRACKS){
-      this.genomeBrowser?.set_switch(["track"])
-
     } else if(action.type === OutgoingActionType.TURN_ON_TRACKS){
-      this.genomeBrowser?.set_switch(["track"])
-      this.genomeBrowser?.set_switch(["track", ...action.payload.track_ids])
-      this.genomeBrowser?.set_switch(["label"])
-      this.genomeBrowser?.set_switch(["label", ...action.payload.track_ids])
-
+      for(let track_id of action.payload.track_ids) {
+        this.genomeBrowser?.set_switch(["track",track_id])
+        this.genomeBrowser?.set_switch(["track",track_id,"label"])
+      }
     } else if(action.type === OutgoingActionType.TURN_OFF_TRACKS){
-
-      this.genomeBrowser?.clear_switch(["track", ...action.payload.track_ids])
-
+      for(let track_id of action.payload.track_ids) {
+        this.genomeBrowser?.clear_switch(["track",track_id])
+        this.genomeBrowser?.clear_switch(["track",track_id,"label"])
+      }
     }  else if(action.type === OutgoingActionType.TURN_ON_LABELS){
-
-      this.genomeBrowser?.set_switch(["label", ...action.payload.track_ids])
-
+      for(let track_id of action.payload.track_ids) {
+        this.genomeBrowser?.set_switch(["track",track_id,"label"])
+      }
     } else if(action.type === OutgoingActionType.TURN_OFF_LABELS){
-
-      this.genomeBrowser?.clear_switch(["label", ...action.payload.track_ids])
-
+      for(let track_id of action.payload.track_ids) {
+        this.genomeBrowser?.clear_switch(["track",track_id,"label"])
+      }
     } else if(action.type === OutgoingActionType.ZOOM_IN){
 
       this.bpPerScreen = this.bpPerScreen - 10000;
